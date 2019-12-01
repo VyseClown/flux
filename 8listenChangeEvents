@@ -1,1 +1,23 @@
-
+// The component listens for changes and calls the '_onChange' callback
+// ...
+var TodoApp = React.createClass({
+ 
+  getInitialState: function() {
+    return getTodoState();
+  },
+ 
+  componentDidMount: function() {
+    TodoStore.addChangeListener(this._onChange);
+  },
+ 
+  componentWillUnmount: function() {
+    TodoStore.removeChangeListener(this._onChange);
+  },
+// ...
+  /**
+   * Event handler for 'change' events coming from the TodoStore
+   */
+  _onChange: function() {
+    this.setState(getTodoState());
+  }
+// ...
