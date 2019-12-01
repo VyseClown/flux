@@ -1,0 +1,14 @@
+// The 'create' method creates an action of type 'TODO_CREATE'
+// ...
+var TodoActions = {
+ 
+  /**
+   * @param  {string} text
+   */
+  create: function(text) {
+    AppDispatcher.handleViewAction({
+      actionType: TodoConstants.TODO_CREATE,
+      text: text
+    });
+  },
+// ...
