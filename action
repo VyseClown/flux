@@ -1,0 +1,31 @@
+// The TodoStore has registered a callback for the 'TODO_CREATE' action.
+// ...
+/**
+ * Create a TODO item.
+ * @param  {string} text The content of the TODO
+ */
+function create(text) {
+  // Hand waving here -- not showing how this interacts with XHR or persistent
+  // server-side storage.
+  // Using the current timestamp + random number in place of a real id.
+  var id = (+new Date() + Math.floor(Math.random() * 999999)).toString(36);
+  _todos[id] = {
+    id: id,
+    complete: false,
+    text: text
+  };
+}
+ 
+// Register to handle all updates
+AppDispatcher.register(function(payload) {
+  var action = payload.action;
+  var text;
+ 
+  switch(action.actionType) {
+    case TodoConstants.TODO_CREATE:
+      text = action.text.trim();
+      if (text !== '') {
+        create(text);
+      }
+      break;
+// ...
