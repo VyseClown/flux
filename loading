@@ -1,0 +1,19 @@
+// Loading the initial data into the application:
+// ...
+/**
+ * Retrieve the current TODO data from the TodoStore
+ */
+function getTodoState() {
+  return {
+    allTodos: TodoStore.getAll(),
+    areAllComplete: TodoStore.areAllComplete()
+  };
+}
+ 
+var TodoApp = React.createClass({
+ 
+  getInitialState: function() {
+    return getTodoState();
+  },
+  
+// ...
