@@ -1,0 +1,27 @@
+// Looking at the 'componentDidMount' will usually show
+// whic stores this component listens to.
+// ...
+function getStateFromStores() {
+  return {
+    threads: ThreadStore.getAllChrono(),
+    currentThreadID: ThreadStore.getCurrentID(),
+    unreadCount: UnreadThreadStore.getCount()
+  };
+}
+
+var ThreadSection = React.createClass({
+
+  getInitialState: function() {
+    return getStateFromStores();
+  },
+
+  componentDidMount: function() {
+    ThreadStore.addChangeListener(this._onChange);
+    UnreadThreadStore.addChangeListener(this._onChange);
+  },
+
+  componentWillUnmount: function() {
+    ThreadStore.removeChangeListener(this._onChange);
+    UnreadThreadStore.removeChangeListener(this._onChange);
+  },
+// ...
